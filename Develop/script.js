@@ -22,7 +22,17 @@ $(function () {
   // useful when saving the description in local storage?
   
 timeBlockEl.each(function(){
-  
+  var timeId =$(this).attr("id");
+
+  var currentHour = dayjs().hour();
+
+  if (currentHour > timeId)
+  {$(this).addClass("past");}
+
+  else if (currentHour < timeId)
+  {$(this).addClass("future");}
+
+  else{$(this).addClass("present");}
 
 });
   // TODO: Add code to apply the past, present, or future class to each time
