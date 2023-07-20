@@ -26,4 +26,4 @@ WHEN I refresh the page
 THEN the saved events persist
 ```
 
-Deployable link to the website https://raelnw.github.io/Work_Day_Ratib
+Deployable link to the website https://raelnw.github.io/Work_Day_Ratib/Assets/index.html
