@@ -7,12 +7,12 @@ var userInput = $(".description")
 
 $(function () {
   saveBtnEL.on("click", function(){
-    var timeId = $(this).closest(timeBlockEl).attr("id");
+    var timeId = $(this).closest(".time-block").attr("id");
 
-    var userSchedule = $(this).siblings(userInput).val();
+    var userSchedule = $(this).siblings(".description").val();
 
     localStorage.setItem(timeId,userSchedule);
-
+    var savedInfo =localStorage.getItem(timeId);
   });
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
@@ -21,20 +21,9 @@ $(function () {
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
   
-timeBlockEl.each(function(){
-  var timeId =$(this).attr("id");
 
-  var currentHour = dayjs().hour();
 
-  if (currentHour > timeId)
-  {$(this).addClass("past");}
 
-  else if (currentHour < timeId)
-  {$(this).addClass("future");}
-
-  else{$(this).addClass("present");}
-
-});
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
@@ -46,5 +35,25 @@ timeBlockEl.each(function(){
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
+    
 
 });
+
+$(".time-block").each(function(){
+  var timeId = $(this).attr("id");
+  var currentHour = dayjs().hour(); /*gets current hour*/
+  
+
+if (timeId < currentHour)
+{$(this).addClass(".past");}
+
+else if (timeId === currentHour)
+{$(this).addClass(".present");}
+
+else{$(this).addClass(".future");}
+
+});
+
+var date = dayjs();
+$("#currentDay").text(date.format("MMM D, YYYY"));
+
